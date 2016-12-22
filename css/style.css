@@ -1,1 +1,22 @@
 # Empty CSS file for your own CSS
+
+/*Style for Table*/
+table, th , td {
+border: 1px solid grey;
+border-collapse: collapse;
+padding: 4px;
+font-family: arial;
+}
+/*Style for Table Header*/
+th {
+background: darkblue;
+color: white;
+text-align: left;
+}
+/*Style for Alternate Rows*/
+table tr:nth-child(odd) {
+background-color: #C2EBC3;
+}
+table tr:nth-child(even) {
+background-color: #FFFFFF;
+}

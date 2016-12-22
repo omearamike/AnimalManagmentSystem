@@ -17,7 +17,7 @@
   		<div class="col-md-12">
   			<ul class="nav nav-tabs">
   				<li class="active">
-  					<a href="index.html">Home</a>
+  					<a href="home.php">Home</a>
   				</li>
   				<li>
   					<a href="create.php">Create</a>
@@ -25,8 +25,8 @@
           <li>
             <a href="update.php">Update</a>
           </li>
-  				<li class="disabled">
-  					<a href="#">Messages</a>
+  				<li>
+  					<a href="records.php">Display all records</a>
   				</li>
   				<li class="dropdown pull-right">
   					 <a href="#" data-toggle="dropdown" class="dropdown-toggle">Dropdown<strong class="caret"></strong></a>

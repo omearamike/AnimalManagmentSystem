@@ -21,7 +21,7 @@ var app = angular.module('animalapp', []);
 app.controller('formCtrl', function($scope, $http) {
     $scope.insertdata = function() {
         console.log($scope);
-        $http.post("createFunc.php", {'valueOne':$scope.user.valueOne, 'valueTwo':$scope.user.valueTwo});
+        $http.post("functions/create.php", {'valueOne':$scope.user.valueOne, 'valueTwo':$scope.user.valueTwo});
         // $http.post("insert.php", {'firstName':$scope.firstName, 'lastName':$scope.lastName}).success(function(data,status,headers,config){console.log()});
 
       };

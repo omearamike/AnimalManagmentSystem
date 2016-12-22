@@ -20,15 +20,14 @@
 </div>
 
 <script>
-var app = angular.module('animalapp', []);
-app.controller('formCtrl', function($scope, $http) {
+  var app = angular.module('animalapp', []);
+  app.controller('formCtrl', function($scope, $http) {
     $scope.insertdata = function() {
         console.log($scope);
-        $http.post("updateFunc.php", {'id':$scope.user.id, 'valueOne':$scope.user.valueOne, 'valueTwo':$scope.user.valueTwo});
+        $http.post("functions/update.php", {'id':$scope.user.id, 'valueOne':$scope.user.valueOne, 'valueTwo':$scope.user.valueTwo});
         // $http.post("insert.php", {'firstName':$scope.firstName, 'lastName':$scope.lastName}).success(function(data,status,headers,config){console.log()});
-
       };
-});
+  });
 </script>
 
 <?php include("include/footer.php"); ?>
