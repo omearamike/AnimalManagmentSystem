@@ -1,11 +1,31 @@
-<?php
-namespace App;
-require_once __DIR__ . '/Test.php';
+<?php include("include/header.php"); ?>
 
-if (!isset($_POST)) {
-    http_response_code(400);
-    return '{ "message": "Received no POST values" }';
-} else {
-    print Test::make(file_get_contents('php://input'))->create();
-    return;
-}
+<div ng-app="animalapp" ng-controller="formCtrl">
+  <form novalidate>
+    First Name:<br>
+    <input name="valueOne" type="text" ng-model="user.valueOne"><br>
+    Last Name:<br>
+    <input name="valueTwo" type="text" ng-model="user.valueTwo">
+    <br><br>
+    <!-- <button ng-click="reset()">RESET</button> -->
+    <input type="button" value="submit" ng-click="insertdata()"/><br />
+  </form>
+
+
+  <p>form = {{user}}</p>
+  <!-- <p> {{user.firstName}}</p> -->
+</div>
+
+<script>
+var app = angular.module('animalapp', []);
+app.controller('formCtrl', function($scope, $http) {
+    $scope.insertdata = function() {
+        console.log($scope);
+        $http.post("createFunc.php", {'valueOne':$scope.user.valueOne, 'valueTwo':$scope.user.valueTwo});
+        // $http.post("insert.php", {'firstName':$scope.firstName, 'lastName':$scope.lastName}).success(function(data,status,headers,config){console.log()});
+
+      };
+});
+</script>
+
+<?php include("include/footer.php"); ?>
