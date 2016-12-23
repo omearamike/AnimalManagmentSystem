@@ -15,6 +15,7 @@
   </table>
 
 </div>
+<a href="functions/download.php">Download as Excel</a>
 
 <script>
   var app = angular.module('animalapp', []);

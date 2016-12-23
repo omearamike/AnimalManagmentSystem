@@ -75,21 +75,26 @@ class Functions
         // uncomment for errors in php error log
         //$dbc->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $statement = $dbc->prepare('SELECT * FROM test ORDER BY id ASC');
+        $statement = $dbc->prepare("SELECT * FROM test ORDER BY id ASC");
         $statement->execute();
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function saveDatabase()
+    public function download()
     {
         $dbc = new DatabaseConnection();
 
         // uncomment for errors in php error log
         //$dbc->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $statement = $dbc->prepare("");
-
+        $t = gmdate("dmY-His");
+        $tmp_file = __DIR__ . '/../tmp/data';
+        $statement = $dbc->prepare("SELECT * FROM test ORDER BY id ASC INTO OUTFILE '" . $tmp_file . ".tmp' FIELDS TERMINATED BY ',' ENCLOSED BY '\"' LINES TERMINATED BY '\n'");
         $statement->execute();
-        return $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        rename("" . $tmp_file . ".tmp", "" . $tmp_file . ".csv");
+
+        // exec ('''__DIR__ . '/../download.php'');
+        // return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 }

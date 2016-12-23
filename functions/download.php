@@ -3,4 +3,4 @@ namespace App;
 require_once __DIR__ . '/Functions.php';
 
 // var_dump (Functions::make()->getAllTestEntries());
-Functions::make()->saveDatabase();
+Functions::make()->download();
