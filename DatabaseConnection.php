@@ -12,7 +12,7 @@ class DatabaseConnection extends PDO
     private $password = 'mike';
     private $host = 'localhost';
     private $port = 3360;
-    private $dbname = 'farm_System';
+    private $dbname = 'farmsystem';
 
     private $dsn;
 

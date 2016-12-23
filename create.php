@@ -1,14 +1,14 @@
 <?php include("include/header.php"); ?>
 
 <div ng-app="animalapp" ng-controller="formCtrl">
-  <form novalidate>
-    First Name:<br>
+  <form novalidate class="form-group">
+    Tag Number:<br>
     <input name="valueOne" type="text" ng-model="user.valueOne"><br>
     Last Name:<br>
     <input name="valueTwo" type="text" ng-model="user.valueTwo">
     <br><br>
     <!-- <button ng-click="reset()">RESET</button> -->
-    <input type="button" value="submit" ng-click="insertdata()"/><br />
+    <input type="button" class="btn btn-default" value="submit" ng-click="insertdata()"/><br />
   </form>
 
 

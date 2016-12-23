@@ -2,27 +2,33 @@
 
 <div ng-app="animalapp" ng-controller="customersCtrl">
 
-  <table>
+  <table class="table table-hover">
   <tr>
-  <th>Name</th>
-  <th>Relationship</th>
+  <th>Tag Id</th>
+  <th>Breed</th>
+  <th>DOB</th>
+  <th>Sex</th>
+  <th>Notes</th>
   </tr>
-  <tr ng-repeat="indivisual in members">
-  <td>{{ indivisual.id }}</td>
-  <td>{{ indivisual.valueOne }}</td>
-  <td>{{ indivisual.valueTwo }}</td>
+  <tr ng-repeat="animal in table">
+  <td>{{ animal.tag_id }}</td>
+  <td>{{ animal.breed_id }}</td>
+  <td>{{ animal.dob }}</td>
+  <td>{{ animal.sex }}</td>
+  <td>{{ animal.notes }}</td>
   </tr>
   </table>
 
 </div>
-<a href="functions/download.php">Download as Excel</a>
+<a target="_blank" href="functions/download.php">1. Prepare Download</a><br>
+<a href="download.php">2. Download File</a>
 
 <script>
   var app = angular.module('animalapp', []);
   app.controller('customersCtrl', function($scope, $http) {
   $http.get("http://localhost:8888/AnimalManagementSystem_v1/functions/getallentriesFunc.php").success(function (response) {
   /*After Successfully fetch the data from JSON file assigning these data to $scope object variable*/
-  $scope.members = response;
+  $scope.table = response;
   });
   });
 </script>

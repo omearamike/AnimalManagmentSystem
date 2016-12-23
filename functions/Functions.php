@@ -6,6 +6,7 @@ require_once __DIR__ . '/../DatabaseConnection.php';
 
 use \PDO;
 use App\DatabaseConnection;
+
 class Functions
 {
     private $request;
@@ -26,14 +27,14 @@ class Functions
 
         // uncomment for errors in php error log
         $dbc->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-        $statement = $dbc->prepare("INSERT INTO test VALUES (null, :valueOne, :valueTwo)");
-        $statement->bindParam(':valueOne', $this->request->valueOne);
-        $statement->bindParam(':valueTwo', $this->request->valueTwo);
+        $statement = $dbc->prepare("INSERT INTO animal (tag_id, breed_id, dob, sex, notes, breedbreed_id) VALUES (:valueOne, null, null, null, null, null)");
+        $myVar = $statement->bindParam(':valueOne', $this->request->valueOne, PDO::PARAM_INT);
+        // $statement->bindParam(':valueOne', $this->request->valueOne);
+        // $statement->bindParam(':valueTwo', $this->request->valueTwo);
         $statement->execute();
         $dbc = null;
 
-        return '{"message": "New values \"' . $this->request->valueOne . '\" and \"' . $this->request->valueTwo . '\" have been saved." }';
+        // return '{"message": "New values \"' . $this->request->valueOne . '\" and \"' . $this->request->valueTwo . '\" have been saved." }';
     }
 
     public function update()
@@ -75,7 +76,7 @@ class Functions
         // uncomment for errors in php error log
         //$dbc->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $statement = $dbc->prepare("SELECT * FROM test ORDER BY id ASC");
+        $statement = $dbc->prepare("SELECT * FROM animal ORDER BY tag_id ASC");
         $statement->execute();
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -89,7 +90,7 @@ class Functions
 
         $t = gmdate("dmY-His");
         $tmp_file = __DIR__ . '/../tmp/data';
-        $statement = $dbc->prepare("SELECT * FROM test ORDER BY id ASC INTO OUTFILE '" . $tmp_file . ".tmp' FIELDS TERMINATED BY ',' ENCLOSED BY '\"' LINES TERMINATED BY '\n'");
+        $statement = $dbc->prepare("SELECT * FROM animal ORDER BY tag_id ASC INTO OUTFILE '" . $tmp_file . ".tmp' FIELDS TERMINATED BY ',' ENCLOSED BY '\"' LINES TERMINATED BY '\n'");
         $statement->execute();
 
         rename("" . $tmp_file . ".tmp", "" . $tmp_file . ".csv");
