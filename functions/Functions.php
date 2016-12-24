@@ -27,8 +27,13 @@ class Functions
 
         // uncomment for errors in php error log
         $dbc->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $statement = $dbc->prepare("INSERT INTO animal (tag_id, breed_id, dob, sex, notes, breedbreed_id) VALUES (:valueOne, null, null, null, null, null)");
-        $myVar = $statement->bindParam(':valueOne', $this->request->valueOne, PDO::PARAM_INT);
+
+        $statement = $dbc->prepare("INSERT INTO animal (tag_id, breed_id, dob, sex, notes, breedbreed_id) VALUES (:tagId, :breed_id, STR_TO_DATE(:dob, '%Y-%m-%d'), :sex, :notes, null)");
+        $myVar = $statement->bindParam(':tagId', $this->request->tagId, PDO::PARAM_INT);
+        $myVar = $statement->bindParam(':breed_id', $this->request->breed_id, PDO::PARAM_INT);
+        $myVar = $statement->bindParam(':dob', $this->request->dob, PDO::PARAM_STR);
+        $myVar = $statement->bindParam(':sex', $this->request->sex, PDO::PARAM_INT);
+        $myVar = $statement->bindParam(':notes', $this->request->notes, PDO::PARAM_STR);
         // $statement->bindParam(':valueOne', $this->request->valueOne);
         // $statement->bindParam(':valueTwo', $this->request->valueTwo);
         $statement->execute();
